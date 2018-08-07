@@ -1,12 +1,31 @@
 package br.com.caelum.ingresso.model;
 
 import java.time.LocalTime;
-import java.util.Calendar;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+
+
+@Entity
 public class Sessao {
+	@Id
+	@GeneratedValue
+	private Integer Id;
+	@ManyToOne
 	private Filme filme;
+	@ManyToOne
 	private Sala sala;
 	private LocalTime horario;
+	// precisa criar sempre um construtor sem argumentos //
+	/**
+	 * @deprecated hibernate only
+	 */
+	public Sessao (){
+		
+	}
 	
 	public Sessao(Sala sala, Filme filme, LocalTime horario){
 		this.sala=sala;
