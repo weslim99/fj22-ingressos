@@ -13,7 +13,8 @@ import javax.persistence.ManyToOne;
 public class Sessao {
 	@Id
 	@GeneratedValue
-	private Integer Id;
+	private Integer id;
+	
 	@ManyToOne
 	private Filme filme;
 	@ManyToOne
@@ -37,7 +38,13 @@ public class Sessao {
 	public LocalTime getHorarioTermino(){
 		return this.horario.plusMinutes(filme.getDuracao().toMinutes());
 	}
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Filme getFilme() {
 		return filme;
 	}
