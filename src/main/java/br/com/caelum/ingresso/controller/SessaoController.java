@@ -30,6 +30,7 @@ public class SessaoController {
 	private SessaoDao sessaoDao;
 	
 	
+	
 	@GetMapping("/admin/sessao")
 	public ModelAndView form (@RequestParam("salaId") Integer salaId, SessaoForm form){
 		form.setSalaId(salaId);
@@ -49,7 +50,7 @@ public class SessaoController {
 		if (result.hasErrors()) return form(form.getSalaId(),form);
 		
 		Sessao sessao = form.toSessao(salaDao, filmeDao);
-		List<Sessao> sessoesDaSala = sessaoDao.buscaSessoesDaSala(sala.getSala());
+		List<Sessao> sessoesDaSala = sessaoDao.buscaSessoesDaSala(sessao.getSala());
 		GerenciadorDeSessao gerenciador = new GerenciadorDeSessao(sessoesDaSala);
 		
 		if(gerenciador.cabe(sessao)){
