@@ -28,7 +28,7 @@ public class Sessao {
 		
 	}
 	
-	public Sessao(Sala sala, Filme filme, LocalTime horario){
+	public Sessao(LocalTime horario, Filme filme,Sala sala ){
 		this.sala=sala;
 		this.filme=filme;
 		this.horario=horario;
