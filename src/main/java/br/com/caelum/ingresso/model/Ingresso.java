@@ -3,13 +3,28 @@ package br.com.caelum.ingresso.model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.ManyToAny;
 
 import br.com.caelum.ingresso.model.descontos.Desconto;
-
+@Entity
 public class Ingresso {
-	private Sessao sessao;
+	@Id
+	@GeneratedValue
+	private int id;
+	@ManyToOne
+	private Sessao sessao;	
 	private BigDecimal preco;
+	@ManyToOne
+	private Lugar lugar;
+	@Enumerated(EnumType.STRING)	
+	private TipoDeIngresso tipoDeIngresso;
 	
 	/**
 	 * 
@@ -19,9 +34,12 @@ public class Ingresso {
 		
 	}
 	
-	public Ingresso (Sessao sessao, Desconto tipoDeDesconto){
+	public Ingresso (Sessao sessao, TipoDeIngresso tipoDeIngresso, Lugar lugar){
 		this.sessao=sessao;
-		this.preco = tipoDeDesconto.aplicarDescontoSobre(sessao.getPreco());
+		this.tipoDeIngresso = tipoDeIngresso;
+		this.preco = this.tipoDeIngresso.aplicaDesconto(sessao.getPreco());
+		
+		this.lugar = lugar;
 	}
 	
 	public BigDecimal getPreco() {
