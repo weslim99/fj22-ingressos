@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.Entity;
+import javax.persistence.Entity;
 import org.hibernate.annotations.ManyToAny;
 
 import br.com.caelum.ingresso.model.descontos.Desconto;
@@ -23,6 +23,8 @@ public class Ingresso {
 	private BigDecimal preco;
 	@ManyToOne
 	private Lugar lugar;
+	
+
 	@Enumerated(EnumType.STRING)	
 	private TipoDeIngresso tipoDeIngresso;
 	
@@ -59,5 +61,28 @@ public class Ingresso {
 		this.sessao = sessao;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Lugar getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(Lugar lugar) {
+		this.lugar = lugar;
+	}
+
+	public TipoDeIngresso getTipoDeIngresso() {
+		return tipoDeIngresso;
+	}
+
+	public void setTipoDeIngresso(TipoDeIngresso tipoDeIngresso) {
+		this.tipoDeIngresso = tipoDeIngresso;
+	}
 	
 }

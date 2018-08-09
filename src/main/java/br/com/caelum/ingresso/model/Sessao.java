@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 
 
 
+
 @Entity
 public class Sessao {
 	@Id
@@ -86,5 +87,9 @@ public class Sessao {
 	
 	public Map<String, List<Lugar>> getMapaDeLugares(){
 		return sala.getMapaDeLugares();
+	}
+	
+	public boolean isDisponivel(Lugar lugarSelecionado){
+		return ingressos.stream().map(Ingresso::getLugar).noneMatch(lugar-> lugar.equals(lugarSelecionado));
 	}
 }
